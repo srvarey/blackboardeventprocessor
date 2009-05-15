@@ -7,4 +7,4 @@ The Blackboard Event Processor is a Java based implementation of the blackboard 
 
 Software processes can add, update, and remove chunks of information in the repository. The blackboard design paradigm provides for data change notification services to the participating software processes, and provides for the scheduling of those software processes that wish to effect changes on the chunks of information in the repository. The diagram below illustrates the relationship among the data, software processes, and the blackboard in a hypothetical patient management application.
 
-http://blackboardeventprocessor.googlecode.com/svn/src/doc/user/Blackboard_High_Level.jpg
+http://blackboardeventprocessor.googlecode.com/svn/trunk/src/doc/user/Blackboard_High_Level.jpg
