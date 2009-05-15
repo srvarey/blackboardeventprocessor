@@ -24,3 +24,8 @@ Using the blackboard model, programmers developing software focus on creating th
 Blackboard implements many of the ideas from the blackboard programming model. In Blackboard, chunks of information are called “targets”, and the software processes interested in these targets are called “plans”. There are also special types of targets called “events”. Events differ from ordinary targets in that they are typically created outside the blackboard environment. Finally, targets, plans, and events are all organized on the blackboard in “workspaces”.
 
 A workspace is a logical division of the blackboard. The relationship amongst an event, its workspace, its associated plans, and the blackboard is similar to the relationship between a JMS message, a J2EE container, its associated message driven beans, and a J2EE application server, in the sense that many different types of workspaces can run on a single blackboard, and that the arrival of an event starts the execution plans on that workspace. The difference lies in the fact that workspaces are specifically geared to handle event based processing.
+
+== High Level Blackboard Workspace Server Design ==
+The following diagram illustrates the logical relationship of targets, events, plans, and the blackboard.
+
+http://blackboardeventprocessor.googlecode.com/svn/trunk/src/doc/user/Blackboard_High_Level.jpg
