@@ -3,8 +3,24 @@
 
 = Introduction =
 
-The Blackboard Event Processor is a Java based implementation of the blackboard design paradigm. The blackboard design paradigm facilitates the organization of chunks of information for processing by loosely coupled software processes. These chunks of information are stored in the blackboard's central data repository. This central data repository is accessible by all participating software processes.
+The Blackboard Event Processor, or Blackboard for short, is a Java based implementation of the blackboard design paradigm. The blackboard design paradigm facilitates the organization of chunks of information for processing by loosely coupled software processes. These chunks of information are stored in the blackboard's central data repository. This central data repository is accessible by all participating software processes.
 
 Software processes can add, update, and remove chunks of information in the repository. The blackboard design paradigm provides for data change notification services to the participating software processes, and provides for the scheduling of those software processes that wish to effect changes on the chunks of information in the repository. The diagram below illustrates the relationship among the data, software processes, and the blackboard in a hypothetical patient management application.
 
 http://blackboardeventprocessor.googlecode.com/svn/trunk/src/doc/user/Blackboard_Model.jpg
+
+The advantage of this design pattern is that it encourages the development of a loosely coupled programming structure. In addition, the blackboard design pattern also promotes contractual software process design. That is to say, software processes have the choice to subscribe to only the data changes they find interesting, or they may choose to proclaim disinterest in the current state of the blackboard, at which point their execution ends.
+
+Consider the example patient application. Some of the activities supported by this application include “creating a new patient record”, “updating a patients diagnosis”, and “updating a patient's health status”. These activities will result in changes to the patient's data that is stored in the blackboard's data repository.
+
+Other processes like “notify nurse” for instance, can subscribe to the patient's data changes committed by the other software processes. As an example, if the prescription of the patient changes, both the “notify patient” and the “notify nurse” processes would be interested in that, whereas if the patient slips into a coma, processes “notify nurse” and “notify next of kin” would be interested instead.
+
+Using the blackboard model, programmers developing software focus on creating the following logic for each of the software processes they develop:
+
+  * Logic that dictates the conditions for which the software process is interested in executing.
+  * Logic that dictates the software process activity.
+  * Logic that dictates the conditions for which the software process is no longer interested in executing.
+
+Blackboard implements many of the ideas from the blackboard programming model. In Blackboard, chunks of information are called “targets”, and the software processes interested in these targets are called “plans”. There are also special types of targets called “events”. Events differ from ordinary targets in that they are typically created outside the blackboard environment. Finally, targets, plans, and events are all organized on the blackboard in “workspaces”.
+
+A workspace is a logical division of the blackboard. The relationship amongst an event, its workspace, its associated plans, and the blackboard is similar to the relationship between a JMS message, a J2EE container, its associated message driven beans, and a J2EE application server, in the sense that many different types of workspaces can run on a single blackboard, and that the arrival of an event starts the execution plans on that workspace. The difference lies in the fact that workspaces are specifically geared to handle event based processing.
