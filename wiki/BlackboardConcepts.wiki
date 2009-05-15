@@ -29,3 +29,15 @@ A workspace is a logical division of the blackboard. The relationship amongst an
 The following diagram illustrates the logical relationship of targets, events, plans, and the blackboard.
 
 http://blackboardeventprocessor.googlecode.com/svn/trunk/src/doc/user/Blackboard_High_Level.jpg
+
+In this diagram the large white oval represents the single blackboard. This blackboard supports three types of workspaces. Each type of workspace can support multiple instances, but for the purpose of this illustration only one instance of each workspace is shown. Targets are represented by circles, events by cylinders, and plans by hexagons. Targets, events, and plans are all named, and can be addressed by their names on the workspace2. For instance, in the “Music Order Workspace”, there are named targets, “T0” and “T1”, and named events “E0” and “E1”, and named plans “P0” and “P1”.
+
+Whenever a target is retrieved by its name, the last instance of the target that was added to the workspace is retrieved, and the previous instance if lost to the workspace3. This differs from event retrieval where all versions of the named event added to the workspace are stored. This is why events are represented as a cylinder the diagram above.
+
+===Blackboard===
+Blackboard consists of a blackboard, workspaces, and plans. The blackboard is
+responsible for managing the resources used by the server, and it serves as the gateway through which all events must pass through in order to arrive in workspace. In the general blackboard design paradigm, events are placed directly on the blackboard, however, Blackboard's implementation of the blackboard promotes the separation of the blackboard into smaller parts called workspaces. This allows for performance improvements, and it lends well to programmer organization of the software processes by attaching plans to workspaces of a particular name.
+
+After instantiating a blackboard, placing an event on the blackboard is as easy as invoking the placeOnBlackboard(Object _object) method. The blackboard consults workspace configuration information to figure out what workspaces should be created for the object type placed. So conceivable one could defined workspaces to respond to the any of the types a particular class may have. For instance, if Customer extends the java.util.Object class, one could create workspaces in response to the Customer type and the Object type. This means the blackboard will create two workspaces every time it receives an object of class Person.
+
+Additionally, the blackboard is responsible for persisting workspaces whenever they are retired, or whenever resource constraints called for temporary removal from memory.
