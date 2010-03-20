@@ -1,0 +1,10 @@
+#Blackboard parameters
+appName=Blackboard
+rootDir=.
+rootDeployDir=${rootDir}/deploy
+
+version=beta-0.40.1
+blackboardDeployDir=${rootDeployDir}
+config=${blackboardDeployDir}/cfg
+log=${blackboardDeployDir}/log
+blackboardHome=./workspace/blackboard
